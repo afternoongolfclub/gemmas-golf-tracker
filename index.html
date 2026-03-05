@@ -65,20 +65,20 @@
             flex: 1;
             border: none;
             background: white;
-            padding: 10px 4px;
+            padding: 8px 2px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 600;
             color: #888;
             transition: all 0.3s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
+            gap: 1px;
         }
 
         .nav button .nav-icon {
-            font-size: 22px;
+            font-size: 20px;
         }
 
         .nav button.active {
@@ -531,6 +531,399 @@
         }
 
         /* =============== */
+        /* DRILLS PAGE     */
+        /* =============== */
+        .drill-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .drill-filter-btn {
+            padding: 7px 14px;
+            border-radius: 20px;
+            border: 2px solid #0d9488;
+            background: white;
+            color: #0d9488;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .drill-filter-btn.active {
+            background: #0d9488;
+            color: white;
+        }
+
+        .drills-today-summary {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            text-align: center;
+            border-left: 5px solid #0d9488;
+        }
+
+        .drills-today-summary .drill-summary-number {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0d9488, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .drills-today-summary .drill-summary-label {
+            font-size: 13px;
+            color: #888;
+            font-weight: 600;
+        }
+
+        .drill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .drill-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .drill-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .drill-card.active-drill {
+            border-color: #7c3aed;
+            background: #faf5ff;
+        }
+
+        .drill-card.completed-today {
+            border-color: #0d9488;
+            background: #f0fdfa;
+        }
+
+        .drill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .drill-card.dcat-putting::before { background: #0d9488; }
+        .drill-card.dcat-chipping::before { background: #7c3aed; }
+        .drill-card.dcat-fullswing::before { background: #f59e0b; }
+        .drill-card.dcat-fun::before { background: #ec4899; }
+
+        .drill-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .drill-card-name {
+            font-weight: 700;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .drill-card-cat {
+            font-size: 10px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .dcat-putting .drill-card-cat { background: #e0f7f7; color: #0d9488; }
+        .dcat-chipping .drill-card-cat { background: #f3e8ff; color: #7c3aed; }
+        .dcat-fullswing .drill-card-cat { background: #fef3c7; color: #d97706; }
+        .dcat-fun .drill-card-cat { background: #fce7f3; color: #db2777; }
+
+        .drill-card-desc {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 8px;
+        }
+
+        .drill-card-reps {
+            font-size: 12px;
+            color: #999;
+            font-weight: 600;
+        }
+
+        .drill-card-completed-tag {
+            display: inline-block;
+            background: #d1fae5;
+            color: #059669;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 10px;
+            margin-top: 6px;
+        }
+
+        /* Active Drill Panel */
+        .active-drill-panel {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            text-align: center;
+            border: 2px solid #7c3aed;
+        }
+
+        .active-drill-panel.show {
+            display: block;
+        }
+
+        .active-drill-panel h3 {
+            color: #7c3aed;
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .active-drill-panel .drill-panel-desc {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 16px;
+        }
+
+        .rep-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 16px;
+        }
+
+        .rep-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rep-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .rep-btn-minus {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .rep-btn-plus {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .rep-count-display {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0d9488, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            min-width: 80px;
+        }
+
+        .rep-target {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 16px;
+        }
+
+        .drill-complete-btn {
+            background: linear-gradient(135deg, #0d9488, #7c3aed);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-right: 8px;
+        }
+
+        .drill-complete-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .drill-cancel-btn {
+            background: white;
+            color: #999;
+            border: 2px solid #e5e7eb;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .drill-cancel-btn:hover {
+            border-color: #999;
+        }
+
+        /* =============== */
+        /* BADGES PAGE     */
+        /* =============== */
+        .badges-intro {
+            background: linear-gradient(135deg, #0d9488, #7c3aed);
+            color: white;
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            margin-bottom: 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .badges-counter {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .badge-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .badge-card.locked {
+            opacity: 0.5;
+            filter: grayscale(0.8);
+        }
+
+        .badge-card.unlocked {
+            border: 2px solid #0d9488;
+            animation: badgeGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes badgeGlow {
+            from { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+            to { box-shadow: 0 4px 20px rgba(13, 148, 136, 0.2); }
+        }
+
+        .badge-emoji {
+            font-size: 40px;
+            margin-bottom: 6px;
+        }
+
+        .badge-card.locked .badge-emoji {
+            filter: grayscale(1);
+        }
+
+        .badge-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .badge-desc {
+            font-size: 11px;
+            color: #888;
+            line-height: 1.3;
+        }
+
+        .badge-date {
+            font-size: 10px;
+            color: #0d9488;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        .badge-lock-icon {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 14px;
+            opacity: 0.4;
+        }
+
+        /* Badge unlock toast */
+        .badge-toast {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #0d9488, #7c3aed);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            z-index: 200;
+            text-align: center;
+            animation: toastIn 0.5s ease;
+            max-width: 300px;
+        }
+
+        .badge-toast.show {
+            display: block;
+        }
+
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        .badge-toast-emoji {
+            font-size: 36px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .badge-toast-title {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .badge-toast-sub {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        /* =============== */
         /* GOALS PAGE      */
         /* =============== */
         .add-goal-section {
@@ -795,6 +1188,13 @@
 </head>
 <body>
 
+    <!-- Badge Unlock Toast -->
+    <div class="badge-toast" id="badge-toast">
+        <span class="badge-toast-emoji" id="badge-toast-emoji"></span>
+        <div class="badge-toast-title" id="badge-toast-title"></div>
+        <div class="badge-toast-sub">Badge Unlocked!</div>
+    </div>
+
     <!-- Header -->
     <div class="header">
         <img src="logo.svg" alt="Gemma's Golf Logo" class="logo">
@@ -964,6 +1364,58 @@
     </div>
 
     <!-- =============== -->
+    <!-- DRILLS PAGE     -->
+    <!-- =============== -->
+    <div id="page-drills" class="page">
+        <h2 class="page-title">Practice Drills</h2>
+
+        <div class="drills-today-summary">
+            <div class="drill-summary-number" id="drills-done-today">0</div>
+            <div class="drill-summary-label">Drills completed today</div>
+        </div>
+
+        <!-- Active Drill Panel -->
+        <div class="active-drill-panel" id="active-drill-panel">
+            <h3 id="active-drill-name"></h3>
+            <div class="drill-panel-desc" id="active-drill-desc"></div>
+            <div class="rep-counter">
+                <button class="rep-btn rep-btn-minus" onclick="changeReps(-1)">-</button>
+                <div class="rep-count-display" id="rep-count">0</div>
+                <button class="rep-btn rep-btn-plus" onclick="changeReps(1)">+</button>
+            </div>
+            <div class="rep-target" id="rep-target">Target: 0 reps</div>
+            <button class="drill-complete-btn" onclick="completeDrill()">Done!</button>
+            <button class="drill-cancel-btn" onclick="cancelDrill()">Cancel</button>
+        </div>
+
+        <!-- Filter -->
+        <div class="drill-filter" id="drill-filter">
+            <button class="drill-filter-btn active" onclick="filterDrills(this, 'all')">All</button>
+            <button class="drill-filter-btn" onclick="filterDrills(this, 'putting')">Putting</button>
+            <button class="drill-filter-btn" onclick="filterDrills(this, 'chipping')">Chipping</button>
+            <button class="drill-filter-btn" onclick="filterDrills(this, 'fullswing')">Full Swing</button>
+            <button class="drill-filter-btn" onclick="filterDrills(this, 'fun')">Fun</button>
+        </div>
+
+        <!-- Drill Cards -->
+        <div class="drill-list" id="drill-list"></div>
+    </div>
+
+    <!-- =============== -->
+    <!-- BADGES PAGE     -->
+    <!-- =============== -->
+    <div id="page-badges" class="page">
+        <h2 class="page-title">Merit Badges</h2>
+
+        <div class="badges-intro">
+            Earn badges by practicing and reaching milestones!
+            <div class="badges-counter" id="badges-counter">0 of 10 badges earned</div>
+        </div>
+
+        <div class="badges-grid" id="badges-grid"></div>
+    </div>
+
+    <!-- =============== -->
     <!-- GOALS PAGE      -->
     <!-- =============== -->
     <div id="page-goals" class="page">
@@ -1004,8 +1456,16 @@
             Routine
         </button>
         <button onclick="showPage('scorecard', this)">
-            <span class="nav-icon">&#127948;</span>
+            <span class="nav-icon">&#9971;</span>
             Scorecard
+        </button>
+        <button onclick="showPage('drills', this)">
+            <span class="nav-icon">&#127948;</span>
+            Drills
+        </button>
+        <button onclick="showPage('badges', this)">
+            <span class="nav-icon">&#127941;</span>
+            Badges
         </button>
         <button onclick="showPage('goals', this)">
             <span class="nav-icon">&#127919;</span>
@@ -1028,6 +1488,7 @@
         // PRESHOT ROUTINE
         // ======================
         let steps = [false, false, false, false, false, false];
+        let routineCompletions = parseInt(localStorage.getItem('gemma_routine_completions') || '0');
 
         function toggleStep(el, index) {
             steps[index] = !steps[index];
@@ -1045,6 +1506,9 @@
             const celebration = document.getElementById('celebration');
             if (done === total) {
                 celebration.classList.add('show');
+                routineCompletions++;
+                localStorage.setItem('gemma_routine_completions', routineCompletions);
+                checkBadges();
             } else {
                 celebration.classList.remove('show');
             }
@@ -1104,6 +1568,7 @@
 
             renderShots();
             updateStats();
+            checkBadges();
         }
 
         function deleteShot(id) {
@@ -1164,6 +1629,250 @@
         }
 
         // ======================
+        // DRILLS
+        // ======================
+        const drillData = [
+            { id: 'gate', name: 'Gate Drill', category: 'putting', desc: 'Put two tees as a gate, roll the ball through', targetReps: 10 },
+            { id: 'circle', name: 'Circle Drill', category: 'putting', desc: 'Place 4 balls around the hole, make them all', targetReps: 4 },
+            { id: 'towel', name: 'Towel Target', category: 'chipping', desc: 'Chip balls onto a towel on the green', targetReps: 10 },
+            { id: 'updown', name: 'Up & Down', category: 'chipping', desc: 'Chip and putt \u2014 try to get down in 2!', targetReps: 5 },
+            { id: 'align', name: 'Alignment Check', category: 'fullswing', desc: 'Place a club on the ground, practice aim', targetReps: 10 },
+            { id: 'tempo', name: 'Tempo Swings', category: 'fullswing', desc: 'Slow-motion swings counting 1-2-3', targetReps: 10 },
+            { id: 'happy', name: 'Happy Gilmore', category: 'fun', desc: 'Take a running start and swing!', targetReps: 3 },
+            { id: 'trick', name: 'Trick Shot', category: 'fun', desc: 'Try any creative shot you can think of', targetReps: 5 },
+        ];
+
+        let drillLog = JSON.parse(localStorage.getItem('gemma_drills_log') || '[]');
+        let currentDrillFilter = 'all';
+        let activeDrill = null;
+        let currentReps = 0;
+
+        function filterDrills(btn, category) {
+            document.querySelectorAll('.drill-filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentDrillFilter = category;
+            renderDrills();
+        }
+
+        function getTodayStr() {
+            return new Date().toLocaleDateString();
+        }
+
+        function getDrillsDoneToday() {
+            const today = getTodayStr();
+            return drillLog.filter(d => d.date === today);
+        }
+
+        function isDrillCompletedToday(drillId) {
+            return getDrillsDoneToday().some(d => d.drillId === drillId);
+        }
+
+        function startDrill(drillId) {
+            const drill = drillData.find(d => d.id === drillId);
+            if (!drill) return;
+
+            activeDrill = drill;
+            currentReps = 0;
+
+            document.getElementById('active-drill-name').textContent = drill.name;
+            document.getElementById('active-drill-desc').textContent = drill.desc;
+            document.getElementById('rep-count').textContent = '0';
+            document.getElementById('rep-target').textContent = 'Target: ' + drill.targetReps + ' reps';
+            document.getElementById('active-drill-panel').classList.add('show');
+
+            // Scroll to panel
+            document.getElementById('active-drill-panel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function changeReps(delta) {
+            currentReps = Math.max(0, currentReps + delta);
+            document.getElementById('rep-count').textContent = currentReps;
+        }
+
+        function completeDrill() {
+            if (!activeDrill) return;
+
+            const entry = {
+                id: Date.now(),
+                drillId: activeDrill.id,
+                drillName: activeDrill.name,
+                category: activeDrill.category,
+                reps: currentReps,
+                targetReps: activeDrill.targetReps,
+                date: getTodayStr(),
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            };
+
+            drillLog.push(entry);
+            localStorage.setItem('gemma_drills_log', JSON.stringify(drillLog));
+
+            activeDrill = null;
+            currentReps = 0;
+            document.getElementById('active-drill-panel').classList.remove('show');
+
+            renderDrills();
+            checkBadges();
+        }
+
+        function cancelDrill() {
+            activeDrill = null;
+            currentReps = 0;
+            document.getElementById('active-drill-panel').classList.remove('show');
+        }
+
+        function renderDrills() {
+            const today = getDrillsDoneToday();
+            document.getElementById('drills-done-today').textContent = today.length;
+
+            const filtered = currentDrillFilter === 'all'
+                ? drillData
+                : drillData.filter(d => d.category === currentDrillFilter);
+
+            const container = document.getElementById('drill-list');
+            container.innerHTML = filtered.map(d => {
+                const done = isDrillCompletedToday(d.id);
+                return `
+                    <div class="drill-card dcat-${d.category} ${done ? 'completed-today' : ''}" onclick="${done ? '' : `startDrill('${d.id}')`}">
+                        <div class="drill-card-top">
+                            <span class="drill-card-name">${d.name}</span>
+                            <span class="drill-card-cat">${d.category === 'fullswing' ? 'Full Swing' : d.category.charAt(0).toUpperCase() + d.category.slice(1)}</span>
+                        </div>
+                        <div class="drill-card-desc">${d.desc}</div>
+                        <div class="drill-card-reps">Target: ${d.targetReps} reps</div>
+                        ${done ? '<div class="drill-card-completed-tag">&#10003; Done today!</div>' : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ======================
+        // BADGES
+        // ======================
+        const badgeDefinitions = [
+            {
+                id: 'first_shot',
+                name: 'First Shot',
+                emoji: '\u26F3',
+                desc: 'Log your first shot on the scorecard',
+                check: () => shots.length >= 1
+            },
+            {
+                id: 'sharpshooter',
+                name: 'Sharpshooter',
+                emoji: '\uD83C\uDFAF',
+                desc: 'Get a 5-star direction rating',
+                check: () => shots.some(s => s.direction === 5)
+            },
+            {
+                id: 'routine_queen',
+                name: 'Routine Queen',
+                emoji: '\uD83D\uDC51',
+                desc: 'Complete the preshot routine 5 times',
+                check: () => routineCompletions >= 5
+            },
+            {
+                id: 'goal_getter',
+                name: 'Goal Getter',
+                emoji: '\uD83C\uDFC6',
+                desc: 'Complete your first goal (100%)',
+                check: () => goals.some(g => g.progress >= 100)
+            },
+            {
+                id: 'drill_sergeant',
+                name: 'Drill Sergeant',
+                emoji: '\uD83D\uDCAA',
+                desc: 'Complete 10 drills total',
+                check: () => drillLog.length >= 10
+            },
+            {
+                id: 'range_rat',
+                name: 'Range Rat',
+                emoji: '\uD83D\uDC2D',
+                desc: 'Log 25 total shots',
+                check: () => shots.length >= 25
+            },
+            {
+                id: 'five_star',
+                name: 'Five Star',
+                emoji: '\u2B50',
+                desc: 'Get a perfect 5.0 average on a shot',
+                check: () => shots.some(s => parseFloat(s.avg) === 5.0)
+            },
+            {
+                id: 'goal_machine',
+                name: 'Goal Machine',
+                emoji: '\uD83C\uDFB0',
+                desc: 'Complete 5 goals',
+                check: () => goals.filter(g => g.progress >= 100).length >= 5
+            },
+            {
+                id: 'drill_master',
+                name: 'Drill Master',
+                emoji: '\uD83E\uDD4B',
+                desc: 'Complete 25 drills total',
+                check: () => drillLog.length >= 25
+            },
+            {
+                id: 'century_club',
+                name: 'Century Club',
+                emoji: '\uD83D\uDCAF',
+                desc: 'Log 100 shots',
+                check: () => shots.length >= 100
+            }
+        ];
+
+        let earnedBadges = JSON.parse(localStorage.getItem('gemma_badges') || '{}');
+
+        function checkBadges() {
+            let newBadge = null;
+
+            badgeDefinitions.forEach(badge => {
+                if (!earnedBadges[badge.id] && badge.check()) {
+                    earnedBadges[badge.id] = new Date().toLocaleDateString();
+                    newBadge = badge;
+                }
+            });
+
+            localStorage.setItem('gemma_badges', JSON.stringify(earnedBadges));
+
+            if (newBadge) {
+                showBadgeToast(newBadge);
+            }
+
+            renderBadges();
+        }
+
+        function showBadgeToast(badge) {
+            const toast = document.getElementById('badge-toast');
+            document.getElementById('badge-toast-emoji').textContent = badge.emoji;
+            document.getElementById('badge-toast-title').textContent = badge.name;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function renderBadges() {
+            const earnedCount = Object.keys(earnedBadges).length;
+            document.getElementById('badges-counter').textContent = earnedCount + ' of ' + badgeDefinitions.length + ' badges earned';
+
+            const container = document.getElementById('badges-grid');
+            container.innerHTML = badgeDefinitions.map(b => {
+                const unlocked = earnedBadges[b.id];
+                return `
+                    <div class="badge-card ${unlocked ? 'unlocked' : 'locked'}">
+                        ${!unlocked ? '<span class="badge-lock-icon">\uD83D\uDD12</span>' : ''}
+                        <div class="badge-emoji">${b.emoji}</div>
+                        <div class="badge-name">${b.name}</div>
+                        <div class="badge-desc">${b.desc}</div>
+                        ${unlocked ? `<div class="badge-date">Earned ${unlocked}</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ======================
         // GOALS
         // ======================
         let selectedGoalCat = 'putting';
@@ -1212,6 +1921,7 @@
                 goal.progress = Math.max(0, Math.min(100, goal.progress + delta));
                 localStorage.setItem('gemma_goals', JSON.stringify(goals));
                 renderGoals();
+                checkBadges();
             }
         }
 
@@ -1264,6 +1974,8 @@
         renderShots();
         updateStats();
         renderGoals();
+        renderDrills();
+        renderBadges();
     </script>
 
 </body>
