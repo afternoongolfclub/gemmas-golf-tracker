@@ -902,12 +902,12 @@
 
         <!-- Club Selector -->
         <div class="club-selector" id="club-selector">
-            <button class="club-btn active" onclick="selectClub(this, 'Putter')">Putter</button>
-            <button class="club-btn" onclick="selectClub(this, '7 Iron')">7 Iron</button>
-            <button class="club-btn" onclick="selectClub(this, '9 Iron')">9 Iron</button>
-            <button class="club-btn" onclick="selectClub(this, 'PW')">PW</button>
-            <button class="club-btn" onclick="selectClub(this, 'Driver')">Driver</button>
+            <button class="club-btn active" onclick="selectClub(this, 'Driver')">Driver</button>
             <button class="club-btn" onclick="selectClub(this, 'Hybrid')">Hybrid</button>
+            <button class="club-btn" onclick="selectClub(this, '5 Iron')">5 Iron</button>
+            <button class="club-btn" onclick="selectClub(this, '7 Iron')">7 Iron</button>
+            <button class="club-btn" onclick="selectClub(this, 'PW')">PW</button>
+            <button class="club-btn" onclick="selectClub(this, 'Putter')">Putter</button>
         </div>
 
         <!-- Shot Tracker Form -->
@@ -1059,7 +1059,7 @@
         // ======================
         // SCORECARD
         // ======================
-        let currentClub = 'Putter';
+        let currentClub = 'Driver';
         let ratings = { contact: 0, direction: 0, routine: 0 };
         let shots = JSON.parse(localStorage.getItem('gemma_shots') || '[]');
 
