@@ -119,109 +119,227 @@
         /* ==================== */
         /* PRESHOT ROUTINE PAGE */
         /* ==================== */
-        .routine-intro {
+        .routine-stage {
             background: white;
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 16px;
+            border-radius: 24px;
+            padding: 32px 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            border-left: 5px solid #0d9488;
-        }
-
-        .routine-intro p {
-            color: #555;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .checklist {
-            list-style: none;
+            margin-bottom: 16px;
+            min-height: 320px;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .routine-stage::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #0d9488, #7c3aed);
+        }
+
+        .routine-emoji {
+            font-size: 80px;
+            margin-bottom: 16px;
+            animation: emojiPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes emojiPop {
+            0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+            60% { transform: scale(1.15) rotate(5deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .routine-step-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #0d9488, #7c3aed);
+            color: white;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .routine-step-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 8px;
+            animation: slideUp 0.5s ease;
+        }
+
+        .routine-step-desc {
+            font-size: 16px;
+            color: #777;
+            max-width: 280px;
+            line-height: 1.4;
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .routine-step-tip {
+            margin-top: 14px;
+            background: #f0fdfa;
+            border: 1px solid #0d948833;
+            border-radius: 12px;
+            padding: 10px 16px;
+            font-size: 13px;
+            color: #0d9488;
+            font-weight: 600;
+            animation: slideUp 0.7s ease;
+        }
+
+        /* Step dots */
+        .routine-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .routine-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .routine-dot.active {
+            background: linear-gradient(135deg, #0d9488, #7c3aed);
+            transform: scale(1.3);
+        }
+
+        .routine-dot.done {
+            background: #0d9488;
+        }
+
+        /* Controls */
+        .routine-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             gap: 12px;
         }
 
-        .checklist li {
+        .routine-nav-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid #e5e7eb;
             background: white;
-            border-radius: 16px;
-            padding: 16px;
+            font-size: 20px;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 14px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            cursor: pointer;
-            transition: all 0.3s;
-            user-select: none;
-            border: 2px solid transparent;
+            justify-content: center;
+            transition: all 0.2s;
+            color: #555;
         }
 
-        .checklist li:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-        }
-
-        .checklist li.checked {
+        .routine-nav-btn:hover {
             border-color: #0d9488;
-            background: #f0fdfa;
+            color: #0d9488;
+            transform: scale(1.05);
         }
 
-        .checklist li .step-number {
-            width: 40px;
-            height: 40px;
+        .routine-nav-btn:disabled {
+            opacity: 0.3;
+            cursor: default;
+            transform: none;
+        }
+
+        .routine-play-btn {
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
+            border: none;
             background: linear-gradient(135deg, #0d9488, #7c3aed);
             color: white;
+            font-size: 24px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 18px;
-            flex-shrink: 0;
+            transition: all 0.2s;
+            box-shadow: 0 4px 16px rgba(13, 148, 136, 0.3);
         }
 
-        .checklist li.checked .step-number {
-            background: #0d9488;
+        .routine-play-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.4);
         }
 
-        .checklist li .step-content {
-            flex: 1;
+        /* Timer bar */
+        .routine-timer-bar {
+            width: 100%;
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            overflow: hidden;
         }
 
-        .checklist li .step-title {
-            font-weight: 700;
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 2px;
+        .routine-timer-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0d9488, #7c3aed);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.1s linear;
         }
 
-        .checklist li .step-desc {
-            font-size: 13px;
-            color: #777;
+        /* Celebration screen */
+        .routine-celebrate {
+            display: none;
         }
 
-        .checklist li .check-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 3px solid #ccc;
+        .routine-celebrate.show {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            flex-shrink: 0;
-            transition: all 0.3s;
         }
 
-        .checklist li.checked .check-icon {
-            background: #0d9488;
-            border-color: #0d9488;
-            color: white;
+        .routine-celebrate-emoji {
+            font-size: 60px;
+            animation: celebrateSpin 1s ease;
         }
 
-        .reset-btn {
-            display: block;
-            margin: 20px auto 0;
+        @keyframes celebrateSpin {
+            0% { transform: scale(0) rotate(-180deg); }
+            60% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .routine-celebrate-text {
+            font-size: 22px;
+            font-weight: 800;
+            color: #7c3aed;
+            margin-top: 12px;
+        }
+
+        .routine-celebrate-sub {
+            font-size: 14px;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .routine-replay-btn {
+            margin-top: 20px;
             background: linear-gradient(135deg, #7c3aed, #0d9488);
             color: white;
             border: none;
@@ -230,62 +348,11 @@
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s;
         }
 
-        .reset-btn:hover {
+        .routine-replay-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            background: white;
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            text-align: center;
-        }
-
-        .progress-bar-outer {
-            background: #e5e7eb;
-            border-radius: 20px;
-            height: 20px;
-            overflow: hidden;
-            margin-top: 8px;
-        }
-
-        .progress-bar-inner {
-            height: 100%;
-            background: linear-gradient(90deg, #0d9488, #7c3aed);
-            border-radius: 20px;
-            transition: width 0.5s ease;
-            width: 0%;
-        }
-
-        .progress-text {
-            font-weight: 700;
-            color: #7c3aed;
-            font-size: 14px;
-        }
-
-        /* Celebration */
-        .celebration {
-            display: none;
-            text-align: center;
-            font-size: 28px;
-            margin-top: 10px;
-            animation: bounce 0.6s ease;
-        }
-
-        .celebration.show {
-            display: block;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
         }
 
         /* =============== */
@@ -1208,70 +1275,39 @@
     <div id="page-routine" class="page active">
         <h2 class="page-title">My Preshot Routine</h2>
 
-        <div class="routine-intro">
-            <p>Go through each step before every shot. Tap each one when you've done it!</p>
-        </div>
-
-        <div class="progress-container">
-            <span class="progress-text" id="progress-text">0 of 6 steps done</span>
-            <div class="progress-bar-outer">
-                <div class="progress-bar-inner" id="progress-bar"></div>
+        <!-- Animated Stage -->
+        <div class="routine-stage" id="routine-stage">
+            <!-- Step content injected by JS -->
+            <div id="routine-step-content">
+                <div class="routine-emoji" id="routine-emoji"></div>
+                <div class="routine-step-number" id="routine-step-num"></div>
+                <div class="routine-step-title" id="routine-step-title"></div>
+                <div class="routine-step-desc" id="routine-step-desc"></div>
+                <div class="routine-step-tip" id="routine-step-tip"></div>
             </div>
-            <div class="celebration" id="celebration">&#127775; Amazing job, Gemma! &#127775;</div>
+            <!-- Celebration -->
+            <div class="routine-celebrate" id="routine-celebrate">
+                <div class="routine-celebrate-emoji">&#127775;&#9971;&#127775;</div>
+                <div class="routine-celebrate-text">You're ready, Gemma!</div>
+                <div class="routine-celebrate-sub">Now go hit an amazing shot!</div>
+                <button class="routine-replay-btn" onclick="replayRoutine()">Watch Again</button>
+            </div>
         </div>
 
-        <ul class="checklist" id="checklist">
-            <li onclick="toggleStep(this, 0)">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <div class="step-title">Pick My Target</div>
-                    <div class="step-desc">Look at where I want the ball to go</div>
-                </div>
-                <div class="check-icon">&#10003;</div>
-            </li>
-            <li onclick="toggleStep(this, 1)">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <div class="step-title">Take a Deep Breath</div>
-                    <div class="step-desc">Breathe in slowly, then out</div>
-                </div>
-                <div class="check-icon">&#10003;</div>
-            </li>
-            <li onclick="toggleStep(this, 2)">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <div class="step-title">Practice Swing</div>
-                    <div class="step-desc">One smooth practice swing</div>
-                </div>
-                <div class="check-icon">&#10003;</div>
-            </li>
-            <li onclick="toggleStep(this, 3)">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <div class="step-title">Set My Feet</div>
-                    <div class="step-desc">Stand with feet shoulder width apart</div>
-                </div>
-                <div class="check-icon">&#10003;</div>
-            </li>
-            <li onclick="toggleStep(this, 4)">
-                <div class="step-number">5</div>
-                <div class="step-content">
-                    <div class="step-title">Check My Grip</div>
-                    <div class="step-desc">Hands together, nice and relaxed</div>
-                </div>
-                <div class="check-icon">&#10003;</div>
-            </li>
-            <li onclick="toggleStep(this, 5)">
-                <div class="step-number">6</div>
-                <div class="step-content">
-                    <div class="step-title">Swing & Have Fun!</div>
-                    <div class="step-desc">Smooth swing and smile!</div>
-                </div>
-                <div class="check-icon">&#10003;</div>
-            </li>
-        </ul>
+        <!-- Timer bar -->
+        <div class="routine-timer-bar">
+            <div class="routine-timer-fill" id="routine-timer-fill"></div>
+        </div>
 
-        <button class="reset-btn" onclick="resetChecklist()">Start Over</button>
+        <!-- Dots -->
+        <div class="routine-dots" id="routine-dots"></div>
+
+        <!-- Controls -->
+        <div class="routine-controls">
+            <button class="routine-nav-btn" id="routine-prev" onclick="routinePrev()">&#9664;</button>
+            <button class="routine-play-btn" id="routine-play" onclick="routineTogglePlay()">&#9654;</button>
+            <button class="routine-nav-btn" id="routine-next" onclick="routineNext()">&#9654;</button>
+        </div>
     </div>
 
     <!-- =============== -->
@@ -1487,37 +1523,217 @@
         // ======================
         // PRESHOT ROUTINE
         // ======================
-        let steps = [false, false, false, false, false, false];
         let routineCompletions = parseInt(localStorage.getItem('gemma_routine_completions') || '0');
 
-        function toggleStep(el, index) {
-            steps[index] = !steps[index];
-            el.classList.toggle('checked');
-            updateProgress();
+        const routineSteps = [
+            {
+                emoji: '\uD83C\uDFAF',
+                title: 'Pick My Target',
+                desc: 'Look at where you want the ball to go. Find a spot and lock your eyes on it!',
+                tip: '\uD83D\uDCA1 Pick something specific \u2014 a flag, a tree, or a spot on the ground'
+            },
+            {
+                emoji: '\uD83C\uDF2C\uFE0F',
+                title: 'Take a Deep Breath',
+                desc: 'Breathe in slowly through your nose\u2026 then let it all out. Feel calm and relaxed.',
+                tip: '\uD83D\uDCA1 Try counting: breathe in for 3, out for 3'
+            },
+            {
+                emoji: '\uD83C\uDFCC\uFE0F\u200D\u2640\uFE0F',
+                title: 'Practice Swing',
+                desc: 'One smooth, easy practice swing. Feel the motion of the club.',
+                tip: '\uD83D\uDCA1 Don\u2019t rush it \u2014 smooth and easy wins the race'
+            },
+            {
+                emoji: '\uD83D\uDC5F',
+                title: 'Set My Feet',
+                desc: 'Stand with your feet shoulder-width apart. Feel balanced and strong like a superhero!',
+                tip: '\uD83D\uDCA1 Wiggle your toes to make sure you\u2019re not too tense'
+            },
+            {
+                emoji: '\u270B',
+                title: 'Check My Grip',
+                desc: 'Hands together on the club, nice and relaxed. Not too tight!',
+                tip: '\uD83D\uDCA1 Hold the club like you\u2019re holding a bird \u2014 firm but gentle'
+            },
+            {
+                emoji: '\u2728',
+                title: 'Swing & Smile!',
+                desc: 'Trust your swing and have fun! Smooth all the way through and finish tall.',
+                tip: '\uD83D\uDCA1 The best swings happen when you\u2019re having fun!'
+            }
+        ];
+
+        let currentRoutineStep = 0;
+        let routinePlaying = false;
+        let routineTimer = null;
+        let routineTimerProgress = 0;
+        let routineTimerRAF = null;
+        const STEP_DURATION = 4000; // 4 seconds per step
+
+        function initRoutine() {
+            // Build dots
+            const dotsContainer = document.getElementById('routine-dots');
+            dotsContainer.innerHTML = routineSteps.map((_, i) =>
+                `<div class="routine-dot ${i === 0 ? 'active' : ''}" onclick="goToRoutineStep(${i})"></div>`
+            ).join('');
+            showRoutineStep(0);
         }
 
-        function updateProgress() {
-            const done = steps.filter(Boolean).length;
-            const total = steps.length;
-            const pct = Math.round((done / total) * 100);
-            document.getElementById('progress-bar').style.width = pct + '%';
-            document.getElementById('progress-text').textContent = done + ' of ' + total + ' steps done';
+        function showRoutineStep(index) {
+            currentRoutineStep = index;
+            const step = routineSteps[index];
+            const content = document.getElementById('routine-step-content');
+            const celebrate = document.getElementById('routine-celebrate');
 
-            const celebration = document.getElementById('celebration');
-            if (done === total) {
-                celebration.classList.add('show');
-                routineCompletions++;
-                localStorage.setItem('gemma_routine_completions', routineCompletions);
-                checkBadges();
-            } else {
-                celebration.classList.remove('show');
+            celebrate.classList.remove('show');
+            content.style.display = 'flex';
+            content.style.flexDirection = 'column';
+            content.style.alignItems = 'center';
+
+            // Trigger re-animation by briefly hiding
+            content.style.opacity = '0';
+            requestAnimationFrame(() => {
+                document.getElementById('routine-emoji').textContent = step.emoji;
+                document.getElementById('routine-emoji').style.animation = 'none';
+                void document.getElementById('routine-emoji').offsetWidth;
+                document.getElementById('routine-emoji').style.animation = '';
+
+                document.getElementById('routine-step-num').textContent = 'Step ' + (index + 1) + ' of ' + routineSteps.length;
+                document.getElementById('routine-step-title').textContent = step.title;
+                document.getElementById('routine-step-title').style.animation = 'none';
+                void document.getElementById('routine-step-title').offsetWidth;
+                document.getElementById('routine-step-title').style.animation = '';
+
+                document.getElementById('routine-step-desc').textContent = step.desc;
+                document.getElementById('routine-step-desc').style.animation = 'none';
+                void document.getElementById('routine-step-desc').offsetWidth;
+                document.getElementById('routine-step-desc').style.animation = '';
+
+                document.getElementById('routine-step-tip').textContent = step.tip;
+                document.getElementById('routine-step-tip').style.animation = 'none';
+                void document.getElementById('routine-step-tip').offsetWidth;
+                document.getElementById('routine-step-tip').style.animation = '';
+
+                content.style.opacity = '1';
+            });
+
+            // Update dots
+            document.querySelectorAll('.routine-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+                dot.classList.toggle('done', i < index);
+            });
+
+            // Update nav buttons
+            document.getElementById('routine-prev').disabled = index === 0;
+        }
+
+        function showRoutineCelebrate() {
+            document.getElementById('routine-step-content').style.display = 'none';
+            document.getElementById('routine-celebrate').classList.add('show');
+
+            // Update dots - all done
+            document.querySelectorAll('.routine-dot').forEach(dot => {
+                dot.classList.remove('active');
+                dot.classList.add('done');
+            });
+
+            routineCompletions++;
+            localStorage.setItem('gemma_routine_completions', routineCompletions);
+            checkBadges();
+        }
+
+        function goToRoutineStep(index) {
+            if (routinePlaying) stopRoutinePlay();
+            resetTimerBar();
+            showRoutineStep(index);
+        }
+
+        function routinePrev() {
+            if (currentRoutineStep > 0) {
+                if (routinePlaying) stopRoutinePlay();
+                resetTimerBar();
+                showRoutineStep(currentRoutineStep - 1);
             }
         }
 
-        function resetChecklist() {
-            steps = [false, false, false, false, false, false];
-            document.querySelectorAll('.checklist li').forEach(li => li.classList.remove('checked'));
-            updateProgress();
+        function routineNext() {
+            if (currentRoutineStep < routineSteps.length - 1) {
+                if (routinePlaying) {
+                    stopRoutinePlay();
+                    resetTimerBar();
+                }
+                showRoutineStep(currentRoutineStep + 1);
+                if (!routinePlaying) resetTimerBar();
+            } else {
+                if (routinePlaying) stopRoutinePlay();
+                resetTimerBar();
+                showRoutineCelebrate();
+            }
+        }
+
+        function routineTogglePlay() {
+            if (routinePlaying) {
+                stopRoutinePlay();
+            } else {
+                startRoutinePlay();
+            }
+        }
+
+        function startRoutinePlay() {
+            routinePlaying = true;
+            document.getElementById('routine-play').innerHTML = '&#9646;&#9646;';
+
+            // If we're on the celebrate screen, restart
+            if (document.getElementById('routine-celebrate').classList.contains('show')) {
+                showRoutineStep(0);
+            }
+
+            startTimerBar();
+            routineTimer = setInterval(() => {
+                if (currentRoutineStep < routineSteps.length - 1) {
+                    showRoutineStep(currentRoutineStep + 1);
+                    startTimerBar();
+                } else {
+                    stopRoutinePlay();
+                    resetTimerBar();
+                    showRoutineCelebrate();
+                }
+            }, STEP_DURATION);
+        }
+
+        function stopRoutinePlay() {
+            routinePlaying = false;
+            document.getElementById('routine-play').innerHTML = '&#9654;';
+            clearInterval(routineTimer);
+            cancelAnimationFrame(routineTimerRAF);
+        }
+
+        function startTimerBar() {
+            const fill = document.getElementById('routine-timer-fill');
+            routineTimerProgress = 0;
+            fill.style.width = '0%';
+            const startTime = performance.now();
+
+            function tick(now) {
+                const elapsed = now - startTime;
+                routineTimerProgress = Math.min(100, (elapsed / STEP_DURATION) * 100);
+                fill.style.width = routineTimerProgress + '%';
+                if (routineTimerProgress < 100 && routinePlaying) {
+                    routineTimerRAF = requestAnimationFrame(tick);
+                }
+            }
+            routineTimerRAF = requestAnimationFrame(tick);
+        }
+
+        function resetTimerBar() {
+            cancelAnimationFrame(routineTimerRAF);
+            document.getElementById('routine-timer-fill').style.width = '0%';
+        }
+
+        function replayRoutine() {
+            showRoutineStep(0);
+            resetTimerBar();
         }
 
         // ======================
@@ -1973,6 +2189,7 @@
         // ======================
         // INIT
         // ======================
+        initRoutine();
         renderShots();
         updateStats();
         renderGoals();
