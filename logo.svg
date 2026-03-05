@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="wingGradL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d9488"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="wingGradR" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#0d9488"/>
+    </linearGradient>
+    <linearGradient id="fireGrad" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" style="stop-color:#0d9488"/>
+      <stop offset="50%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+    <linearGradient id="ballGrad" x1="30%" y1="30%" x2="70%" y2="70%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#e5e7eb"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0d9488" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Left Wing - 3 pointed segments like dragon wing -->
+  <g filter="url(#glow)">
+    <!-- Left wing main shape -->
+    <path d="M 95 95
+             Q 60 80 20 30
+             Q 40 55 55 65
+             Q 30 40 10 15
+             Q 35 45 50 55
+             Q 25 25 8 5
+             Q 38 35 60 55
+             Q 70 65 80 80
+             Z"
+          fill="url(#wingGradL)" opacity="0.95"/>
+    <!-- Left wing membrane lines -->
+    <path d="M 80 80 Q 55 60 20 30" stroke="#0d948855" stroke-width="1" fill="none"/>
+    <path d="M 75 75 Q 48 52 10 15" stroke="#0d948855" stroke-width="1" fill="none"/>
+    <path d="M 68 68 Q 42 42 8 5" stroke="#0d948855" stroke-width="1" fill="none"/>
+
+    <!-- Right wing main shape -->
+    <path d="M 105 95
+             Q 140 80 180 30
+             Q 160 55 145 65
+             Q 170 40 190 15
+             Q 165 45 150 55
+             Q 175 25 192 5
+             Q 162 35 140 55
+             Q 130 65 120 80
+             Z"
+          fill="url(#wingGradR)" opacity="0.95"/>
+    <!-- Right wing membrane lines -->
+    <path d="M 120 80 Q 145 60 180 30" stroke="#7c3aed55" stroke-width="1" fill="none"/>
+    <path d="M 125 75 Q 152 52 190 15" stroke="#7c3aed55" stroke-width="1" fill="none"/>
+    <path d="M 132 68 Q 158 42 192 5" stroke="#7c3aed55" stroke-width="1" fill="none"/>
+  </g>
+
+  <!-- Fire/flame trail below the ball -->
+  <g opacity="0.8">
+    <path d="M 88 130 Q 85 150 90 165 Q 95 175 100 185 Q 105 175 110 165 Q 115 150 112 130"
+          fill="url(#fireGrad)" opacity="0.6"/>
+    <path d="M 92 128 Q 90 145 95 158 Q 98 165 100 172 Q 102 165 105 158 Q 110 145 108 128"
+          fill="url(#fireGrad)" opacity="0.8"/>
+    <path d="M 95 126 Q 94 140 97 150 Q 99 155 100 160 Q 101 155 103 150 Q 106 140 105 126"
+          fill="#a855f7" opacity="0.5"/>
+  </g>
+
+  <!-- Golf Ball -->
+  <g filter="url(#shadow)">
+    <circle cx="100" cy="105" r="28" fill="url(#ballGrad)" stroke="#d1d5db" stroke-width="1"/>
+    <!-- Dimple pattern -->
+    <circle cx="90" cy="96" r="2.5" fill="none" stroke="#d1d5db" stroke-width="0.6" opacity="0.5"/>
+    <circle cx="100" cy="93" r="2.5" fill="none" stroke="#d1d5db" stroke-width="0.6" opacity="0.5"/>
+    <circle cx="110" cy="96" r="2.5" fill="none" stroke="#d1d5db" stroke-width="0.6" opacity="0.5"/>
+    <circle cx="86" cy="105" r="2.5" fill="none" stroke="#d1d5db" stroke-width="0.6" opacity="0.5"/>
+    <circle cx="95" cy="103" r="2.5" fill="none" stroke="#d1d5db" stroke-width="0.6" opacity="0.5"/>
+    <circle cx="105" cy="103" r="2.5" fill="none" stroke="#d1d5db" stroke-width="0.6" opacity="0.5"/>
+    <circle cx="114" cy="105" r="2.5" fill="none" stroke="#d1d5db" stroke-width="0.6" opacity="0.5"/>
+    <circle cx="90" cy="113" r="2.5" fill="none" stroke="#d1d5db" stroke-width="0.6" opacity="0.5"/>
+    <circle cx="100" cy="112" r="2.5" fill="none" stroke="#d1d5db" stroke-width="0.6" opacity="0.5"/>
+    <circle cx="110" cy="113" r="2.5" fill="none" stroke="#d1d5db" stroke-width="0.6" opacity="0.5"/>
+  </g>
+
+  <!-- "G" letter on the ball -->
+  <text x="100" y="112" text-anchor="middle" font-family="Georgia, serif" font-size="24" font-weight="bold" fill="#7c3aed" opacity="0.7">G</text>
+
+</svg>
